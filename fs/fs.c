@@ -1117,6 +1117,7 @@ static void stat_inode(struct inode *inode, struct stat *s)
 	s->st_mode = inode->i_mode;
 	s->st_uid = inode->i_uid;
 	s->st_gid = inode->i_gid;
+	s->st_cdevname = inode->cdevname;
 }
 
 int fstat(int fd, struct stat *s)
