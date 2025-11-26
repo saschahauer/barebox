@@ -1100,11 +1100,23 @@ EXPORT_SYMBOL(readdir);
 
 static void stat_inode(struct inode *inode, struct stat *s)
 {
+	if (inode->cdevname) {
+		struct cdev *cdev;
+
+		cdev = cdev_by_name(inode->cdevname);
+		if (cdev) {
+			s->st_size = cdev_size(cdev);
+		} else {
+			s->st_size = 0;
+		}
+	} else {
+		s->st_size = inode->i_size;
+	}
+
 	s->st_ino = inode->i_ino;
 	s->st_mode = inode->i_mode;
 	s->st_uid = inode->i_uid;
 	s->st_gid = inode->i_gid;
-	s->st_size = inode->i_size;
 }
 
 int fstat(int fd, struct stat *s)
