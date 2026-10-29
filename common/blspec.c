@@ -128,7 +128,7 @@ static int blspec_boot(struct bootentry *be, int verbose, int dryrun)
 	if (initrd)
 		data.initrd_file = basprintf("%s/%s", abspath, initrd);
 
-	globalvar_add_simple("linux.bootargs.dyn.bootentries", options);
+	globalvar_add_simple("linux.bootargs.bootentries", options);
 
 	appendroot = blspec_entry_var_get(entry, "linux-appendroot");
 	if (appendroot) {

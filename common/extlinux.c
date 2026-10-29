@@ -68,7 +68,7 @@ static int extlinux_boot(struct bootentry *entry, int verbose, int dryrun)
 	}
 
 	if (e->append)
-		globalvar_add_simple("linux.bootargs.dyn.bootentries",
+		globalvar_add_simple("linux.bootargs.bootentries",
 				     e->append);
 
 	pr_info("Booting extlinux label '%s'\n", e->label);
